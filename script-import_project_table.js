@@ -1,14 +1,9 @@
 const path = require('path');
-// const util = require('util');
-// const fs = require('fs-extra');
+const uuid = require('uuid');
 const mongoose = require('mongoose');
 const ProjectSchema = require('./app/mongoose-schema_defs').ProjectSchema;
 const xlsxParser = require('./app/lib-xlsx_parser');
-// const stringFormatter = require('./app/util-string_formatter');
 const C = require('./app/config');
-
-// stringFormatter.setLowerCaseWords(C.LOWER_CASE_WORDS);
-// stringFormatter.setUpperCaseWords(C.UPPER_CASE_WORDS);
 
 const ProjectModel = mongoose.model('Project', ProjectSchema);
 
@@ -16,13 +11,25 @@ const table = xlsxParser.parse(path.join(__dirname, 'app', 'data-projects.xlsx')
 
 const projectDocs = [];
 
-// let groupName;
+// Project UUIDs
+// 'e1650ae0-a39c-11e6-a738-31c333ef0e28'
+// 'e75a9dc0-a39c-11e6-a738-31c333ef0e28'
+
 let project;
 let fieldName;
 table.data.forEach((rowObj, rowIndex) => {
   rowObj.forEach((cellString, colIndex) => {
     if (colIndex === 0 && cellString) {
-      project = { name: cellString, subcontractors: [], startDate: '', endDate: '', nationCode: '', jurisdictionCodes: [] };
+      project = {
+        _uuid: uuid.v1(),
+        name: cellString,
+        subcontractors: [],
+        startDate: '',
+        endDate: '',
+        nationCode: '',
+        jurisdictionCodes: [],
+        indicators: [],
+      };
       projectDocs.push(project);
     }
     if (colIndex === 1 && cellString) {
@@ -30,10 +37,12 @@ table.data.forEach((rowObj, rowIndex) => {
     }
     if (colIndex === 2 && cellString) {
       if (fieldName === 'subcontractor') project.subcontractors.push(cellString);
+      else if (fieldName === 'id') project._id = cellString; // overrides the default random UUID
       else if (fieldName === 'startdate') project.startDate = cellString;
       else if (fieldName === 'enddate') project.endDate = cellString;
       else if (fieldName === 'nation') project.nationCode = cellString;
       else if (fieldName === 'jurisdictions') project.jurisdictionCodes.push(cellString);
+      else if (fieldName === 'indicators') project.indicators.push(cellString);
     }
   });
 });
