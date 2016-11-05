@@ -2,8 +2,8 @@ const path = require('path');
 const fs = require('fs-extra');
 
 const UPPER_CASE_WORDS = ['gcf', 'gcff', 'mrv', 'redd', 'nfm', 'ss'];
-const LOWER_CASE_WORDS = ['a', 'an', 'and', 'the', 'as', 'or', 'of', 'on', 'in', 'by', 'to', 'for', 'with'];
-// const PAGE_NAMES = ['Home', 'About', 'Feedback', 'Nation Page', 'State Overview', 'Carbon Accounting', 'REDD Implementation', 'Financing', 'Audits And Reviews'];
+const LOWER_CASE_WORDS = ['a', 'an', 'at', 'as', 'and', 'the', 'or', 'of', 'on', 'in', 'by', 'to', 'for', 'with'];
+
 const DB_URI = 'mongodb://localhost:27017/gcffund-portal';
 
 const IS_PRODUCTION = false;
