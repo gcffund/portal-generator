@@ -1,0 +1,10 @@
+{
+    "extends": "airbnb",
+    "env": {
+        "jquery": true
+    },
+    "rules": {
+        "no-console": 0,
+        "max-len": 0
+    }
+}
