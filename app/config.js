@@ -9,6 +9,8 @@ const DB_URI = 'mongodb://localhost:27017/gcffund-portal';
 const GRAPHQL_PORT = 9090;
 const GRAPHQL_BASE_URI = `http://127.0.0.1:${GRAPHQL_PORT}`;
 
+const PUBLIC_DIR = '/var/www/gcffund-portal/public';
+
 const IS_PRODUCTION = false;
 
 const NATIONS = fs.readJsonSync(path.join('app', 'data.nations.json'));
@@ -27,6 +29,7 @@ module.exports = {
   DB_URI,
   GRAPHQL_PORT,
   GRAPHQL_BASE_URI,
+  PUBLIC_DIR,
   IS_PRODUCTION,
   NATIONS,
   JURISDICTIONS,

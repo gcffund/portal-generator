@@ -1,0 +1,43 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">GCF</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        {{#each navItems}}
+          {{#if items}}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                {{name}}
+                <span class="caret"></span>
+              </a>
+              <ul class="dropdown-menu">
+                {{#each items}}
+                  <li>
+                    <a href="/{{../id}}/{{id}}">{{name}}</a>
+                  </li>
+                {{/each}}
+              </ul>
+            </li>
+          {{else}}
+            <li><a href="/{{id}}">{{name}}</a>
+          {{/if}}
+        {{/each}}
+      </ul>
+      {{#if langItems}}
+        <ul class="nav navbar-nav navbar-right">
+          {{#each langItems}}
+            <li><a href="../navbar/">{{name}}</a></li>
+          {{/each}}
+        </ul>
+      {{/if}}
+    </div>
+  </div>
+</nav>
