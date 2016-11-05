@@ -10,7 +10,6 @@ function lookupJurisdiction(jurisdictionCode) {
   return C.JURISDICTIONS.find(jurisdiction => (jurisdiction.code === jurisdictionCode));
 }
 
-
 function getAlphabeticIndex(integerIndex) {
   const base26 = integerIndex.toString(26);
   let alphabeticIndex = '';
@@ -87,12 +86,14 @@ const FormSchema = new mongoose.Schema({
 });
 
 const ProjectSchema = new mongoose.Schema({
+  _id: { type: String },
   name: { type: String, default: '' },
   subcontractors: { type: [String], default: [] },
   startDate: { type: String, default: '' },
   endDate: { type: String, default: '' },
   nationCode: { type: String, default: '' },
   jurisdictionCodes: { type: [String], default: [] },
+  indicators: { type: [String], default: [] },
 });
 
 ProjectSchema.virtual('nation').get(function projectNation() {

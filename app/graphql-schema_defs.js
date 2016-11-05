@@ -107,12 +107,14 @@ const Project = new GraphQLObjectType({
   name: 'Project',
   description: 'Project',
   fields: () => ({
+    _id: { type: GraphQLString },
     name: { type: GraphQLString },
     subcontractors: { type: new GraphQLList(GraphQLString) },
     startDate: { type: GraphQLString },
     endDate: { type: GraphQLString },
     nation: { type: Nation },
     jurisdictions: { type: new GraphQLList(Jurisdiction) },
+    indicators: { type: new GraphQLList(GraphQLString) },
   }),
 });
 
