@@ -1,0 +1,535 @@
+[
+  {
+    "id": "BR",
+    "a3": "BRA",
+    "code": "BRA",
+    "link": "brazil",
+    "designation": "nation",
+    "name": "Brazil",
+    "isTropical": true,
+    "navColumn": 0,
+    "latitude": -10,
+    "longitude": -55,
+    "callout": [0, -35],
+    "leftLongitude": "-74.008595",
+    "topLatitude": "5.275696",
+    "rightLongitude": "-34.789914",
+    "bottomLatitude": "-33.744725",
+    "isInDatabase": true,
+    "jurisdictions": [
+      {
+        "id": "BR-AC",
+        "a3": "BRA-AC",
+        "code": "BRA-AC",
+        "link": "brazil-acre",
+        "designation": "state",
+        "name": "Acre",
+        "fullName": "Brazil - Acre",
+        "isInDatabase": true
+      },
+      {
+        "id": "BR-AP",
+        "a3": "BRA-AP",
+        "code": "BRA-AP",
+        "link": "brazil-amapa",
+        "designation": "state",
+        "name": "Amapá",
+        "fullName": "Brazil - Amapá",
+        "isInDatabase": true
+      },
+      {
+        "id": "BR-AM",
+        "a3": "BRA-AM",
+        "code": "BRA-AM",
+        "link": "brazil-amazonas",
+        "type": "subnation",
+        "designation": "state",
+        "name": "Amazonas",
+        "fullName": "Brazil - Amazonas",
+        "searchName": "Amazonas (Brazil)",
+        "isInDatabase": true
+      },
+      {
+        "id": "BR-MA ",
+        "a3": "BRA-MA",
+        "code": "BRA-MA",
+        "link": "brazil-maranhao",
+        "type": "subnation",
+        "designation": "state",
+        "name": "Maranhão",
+        "fullName": "Brazil - Maranhão",
+        "isInDatabase": false
+      },
+      {
+        "id": "BR-MT",
+        "a3": "BRA-MT",
+        "code": "BRA-MT",
+        "link": "brazil-mato_grosso",
+        "designation": "state",
+        "name": "Mato Grosso",
+        "fullName": "Brazil - Mato Grosso",
+        "isInDatabase": true
+      },
+      {
+        "id": "BR-PA",
+        "a3": "BRA-PA",
+        "code": "BRA-PA",
+        "link": "brazil-para",
+        "designation": "state",
+        "name": "Pará",
+        "fullName": "Brazil - Pará",
+        "isInDatabase": true
+      },
+      {
+        "id": "BR-RO",
+        "a3": "BRA-RO",
+        "code": "BRA-RO",
+        "link": "brazil-rondonia",
+        "designation": "state",
+        "name": "Rondônia",
+        "fullName": "Brazil - Rondônia",
+        "isInDatabase": false
+      },
+      {
+        "id": "BR-TO",
+        "a3": "BRA-TO",
+        "code": "BRA-TO",
+        "link": "brazil-tocantins",
+        "designation": "state",
+        "name": "Tocantins",
+        "fullName": "Brazil - Tocantins",
+        "isInDatabase": true
+      }
+    ]
+  },
+  {
+    "id": "CO",
+    "a3": "COL",
+    "code": "COL",
+    "link": "colombia",
+    "designation": "nation",
+    "name": "Colombia",
+    "isTropical": true,
+    "navColumn": 4,
+    "latitude": 4,
+    "longitude": -72,
+    "leftLongitude": "-79.051463",
+    "topLatitude": "12.591398",
+    "rightLongitude": "-66.868938",
+    "bottomLatitude": "-4.237159",
+    "isInDatabase": false,
+    "jurisdictions": [
+      {
+        "id": "CO-CAQ",
+        "a3": "COL-CAQ",
+        "code": "COL-CAQ",
+        "link": "colombia-caqueta",
+        "designation": "state",
+        "name": "Caquetá ",
+        "fullName": "Colombia - Caquetá",
+        "isInDatabase": false
+      }
+    ]
+  },
+  {
+    "id": "ID",
+    "a3": "IDN",
+    "code": "IDN",
+    "link": "indonesia",
+    "designation": "nation",
+    "name": "Indonesia",
+    "isTropical": true,
+    "navColumn": 1,
+    "latitude": -5,
+    "longitude": 120,
+    "leftLongitude": "95.220250",
+    "topLatitude": "7.356505",
+    "rightLongitude": "141.009728",
+    "bottomLatitude": "-10.946766",
+    "isInDatabase": true,
+    "jurisdictions": [
+      {
+        "id": "ID-AC",
+        "a3": "IDN-AC",
+        "code": "IDN-AC",
+        "link": "indonesia-aceh",
+        "designation": "province",
+        "name": "Aceh",
+        "fullName": "Indonesia - Aceh",
+        "isInDatabase": true
+      },
+      {
+        "id": "ID-KT",
+        "a3": "IDN-KT",
+        "code": "IDN-KT",
+        "link": "indonesia-central_kalimantan",
+        "designation": "province",
+        "name": "Central Kalimantan",
+        "altName": "Kalimantan Tengah",
+        "fullName": "Indonesia - Central Kalimantan",
+        "isInDatabase": true
+      },
+      {
+        "id": "ID-KI",
+        "a3": "IDN-KI",
+        "code": "IDN-KI",
+        "link": "indonesia-east_kalimantan",
+        "designation": "province",
+        "name": "East Kalimantan",
+        "altName": "Kalimantan Timur",
+        "fullName": "Indonesia - East Kalimantan",
+        "isInDatabase": true
+      },
+      {
+        "id": "ID-KU",
+        "a3": "IDN-KU",
+        "code": "IDN-KU",
+        "link": "indonesia-north_kalimantan",
+        "designation": "province",
+        "name": "North Kalimantan",
+        "altName": "Kalimantan Utara",
+        "fullName": "Indonesia - North Kalimantan",
+        "isInDatabase": false
+      },
+      {
+        "id": "ID-KB",
+        "a3": "IDN-KB",
+        "code": "IDN-KB",
+        "link": "indonesia-west_kalimantan",
+        "designation": "province",
+        "name": "West Kalimantan",
+        "altName": "Kalimantan Barat",
+        "fullName": "Indonesia - West Kalimantan",
+        "isInDatabase": true
+      },
+      {
+        "id": "ID-PA",
+        "a3": "IDN-PA",
+        "code": "IDN-PA",
+        "link": "indonesia-papua",
+        "designation": "province",
+        "name": "Papua",
+        "fullName": "Indonesia - Papua",
+        "isInDatabase": true
+      },
+      {
+        "id": "ID-PB",
+        "a3": "IDN-PB",
+        "code": "IDN-PB",
+        "link": "indonesia-west_papua",
+        "designation": "province",
+        "name": "West Papua",
+        "altName": "Papua Barat",
+        "fullName": "Indonesia - West Papua",
+        "isInDatabase": false
+      }
+    ]
+  },
+  {
+    "id": "CI",
+    "a3": "CIV",
+    "code": "CIV",
+    "link": "ivory_coast",
+    "designation": "nation",
+    "name": "Ivory Coast",
+    "navColumn": 4,
+    "isTropical": true,
+    "latitude": 8,
+    "longitude": -5,
+    "leftLongitude": "-8.6020589",
+    "topLatitude": "10.7400151",
+    "rightLongitude": "-2.493031",
+    "bottomLatitude": "4.3510552",
+    "isInDatabase": false,
+    "jurisdictions": [
+      {
+        "id": "CI-01",
+        "a3": "CIV-01",
+        "code": "CIV-01",
+        "link": "ivory_coast-belier",
+        "designation": "region",
+        "name": "Bélier",
+        "fullName": "Ivory Coast - Bélier",
+        "isInDatabase": false
+      },
+      {
+        "id": "CI-02",
+        "a3": "CIV-02",
+        "code": "CIV-02",
+        "link": "ivory_coast-cavally",
+        "designation": "region",
+        "name": "Cavally",
+        "fullName": "Ivory Coast - Cavally",
+        "isInDatabase": false
+      }
+    ]
+  },
+  {
+    "id": "MX",
+    "a3": "MEX",
+    "code": "MEX",
+    "link": "mexico",
+    "designation": "nation",
+    "name": "Mexico",
+    "isTropical": true,
+    "navColumn": 2,
+    "latitude": 23,
+    "longitude": -102,
+    "leftLongitude": "-118.365366",
+    "topLatitude": "32.719388",
+    "rightLongitude": "-86.723663",
+    "bottomLatitude": "14.530910",
+    "callout": [33, -70],
+    "isInDatabase": true,
+    "jurisdictions": [
+      {
+        "id": "MX-CAM",
+        "a3": "MEX-CAM",
+        "code": "MEX-CAM",
+        "link": "mexico-campeche",
+        "designation": "state",
+        "name": "Campeche",
+        "fullName": "Mexico - Campeche",
+        "isInDatabase": true
+      },
+      {
+        "id": "MX-CHP",
+        "a3": "MEX-CHP",
+        "code": "MEX-CHP",
+        "link": "mexico-chiapas",
+        "designation": "state",
+        "name": "Chiapas",
+        "fullName": "Mexico - Chiapas",
+        "isInDatabase": true
+      },
+      {
+        "id": "MX-JAL",
+        "a3": "MEX-JAL",
+        "code": "MEX-JAL",
+        "link": "mexico-jalisco",
+        "designation": "state",
+        "name": "Jalisco",
+        "fullName": "Mexico - Jalisco",
+        "isInDatabase": true
+      },
+      {
+        "id": "MX-ROO",
+        "a3": "MEX-ROO",
+        "code": "MEX-ROO",
+        "link": "mexico-quintana_roo",
+        "designation": "state",
+        "name": "Quintana Roo",
+        "fullName": "Mexico - Quintana Roo",
+        "isInDatabase": false
+      },
+      {
+        "id": "MX-TAB",
+        "a3": "MEX-TAB",
+        "code": "MEX-TAB",
+        "link": "mexico-tabasco",
+        "designation": "state",
+        "name": "Tabasco",
+        "fullName": "Mexico - Tabasco",
+        "isInDatabase": false
+      },
+      {
+        "id": "MX-YUC",
+        "a3": "MEX-YUC",
+        "code": "MEX-YUC",
+        "link": "mexico-yucatan",
+        "designation": "state",
+        "name": "Yucatán",
+        "fullName": "Mexico - Yucatán",
+        "isInDatabase": false
+      }
+    ]
+  },
+  {
+    "id": "NG",
+    "a3": "NGA",
+    "code": "NGA",
+    "link": "nigeria",
+    "designation": "nation",
+    "name": "Nigeria",
+    "navColumn": 4,
+    "isTropical": true,
+    "latitude": 10,
+    "longitude": 8,
+    "leftLongitude": "2.667421",
+    "topLatitude": "13.892503",
+    "rightLongitude": "14.681004",
+    "bottomLatitude": "4.269658",
+    "isInDatabase": true,
+    "jurisdictions": [
+      {
+        "id": "NG-CR",
+        "a3": "NGA-CR",
+        "code": "NGA-CR",
+        "link": "nigeria-cross_river_state",
+        "designation": "state",
+        "name": "Cross River State",
+        "fullName": "Nigeria - Cross River State",
+        "isInDatabase": true
+      }
+    ]
+  },
+  {
+    "id": "PE",
+    "a3": "PER",
+    "code": "PER",
+    "link": "peru",
+    "designation": "nation",
+    "name": "Peru",
+    "isTropical": true,
+    "navColumn": 3,
+    "latitude": -10,
+    "longitude": -76,
+    "leftLongitude": "-81.390193",
+    "topLatitude": "-0.035767",
+    "rightLongitude": "-68.672457",
+    "bottomLatitude": "-18.388935",
+    "callout": [-5, -86],
+    "isInDatabase": true,
+    "jurisdictions": [
+      {
+        "id": "PE-AMA",
+        "a3": "PER-AMA",
+        "code": "PER-AMA",
+        "link": "peru-amazonas",
+        "designation": "state",
+        "name": "Amazonas",
+        "fullName": "Peru - Amazonas",
+        "searchName": "Amazonas (Peru)",
+        "isInDatabase": false
+      },
+      {
+        "id": "PE-HUC",
+        "a3": "PER-HUC",
+        "code": "PER-HUC",
+        "link": "peru-huanuco",
+        "designation": "state",
+        "name": "Huánuco",
+        "fullName": "Peru - Huánuco",
+        "isInDatabase": false
+      },
+      {
+        "id": "PE-LOR",
+        "a3": "PER-LOR",
+        "code": "PER-LOR",
+        "link": "peru-loreto",
+        "designation": "state",
+        "name": "Loreto",
+        "fullName": "Peru - Loreto",
+        "isInDatabase": false
+      },
+      {
+        "id": "PE-MDD",
+        "a3": "PER-MDD",
+        "code": "PER-MDD",
+        "link": "peru-madre_de_dios",
+        "designation": "state",
+        "name": "Madre de Dios",
+        "fullName": "Peru - Madre de Dios",
+        "isInDatabase": true
+      },
+      {
+        "id": "PE-PIU",
+        "a3": "PER-PIU",
+        "code": "PER-PIU",
+        "link": "peru-piura",
+        "designation": "state",
+        "name": "Piura",
+        "fullName": "Peru - Piura",
+        "isInDatabase": false
+      },
+      {
+        "id": "PE-SAM",
+        "a3": "PER-SAM",
+        "code": "PER-SAM",
+        "link": "peru-san_martin",
+        "designation": "state",
+        "name": "San Martin",
+        "fullName": "Peru - San Martin",
+        "isInDatabase": false
+      },
+      {
+        "id": "PE-UCA",
+        "a3": "PER-UCA",
+        "code": "PER-UCA",
+        "link": "peru-ucayali",
+        "designation": "state",
+        "name": "Ucayali",
+        "fullName": "Peru - Ucayali",
+        "isInDatabase": false
+      }
+    ]
+  },
+  {
+    "id": "ES",
+    "a3": "ESP",
+    "code": "ESP",
+    "link": "spain",
+    "designation": "nation",
+    "name": "Spain",
+    "isTropical": false,
+    "navColumn": 5,
+    "latitude": 40,
+    "longitude": -4,
+    "leftLongitude": "-18.162248",
+    "topLatitude": "43.793549",
+    "rightLongitude": "4.332045",
+    "bottomLatitude": "27.636377",
+    "isInDatabase": false,
+    "jurisdictions": [
+      {
+        "id": "ES-CT",
+        "a3": "ESP-CT",
+        "code": "ESP-CT",
+        "link": "spain-catalonia",
+        "designation": "state",
+        "name": "Catalonia",
+        "fullName": "Spain - Catalonia",
+        "isInDatabase": false
+      }
+    ]
+  },
+  {
+    "id": "US",
+    "a3": "USA",
+    "code": "USA",
+    "link": "united_states",
+    "designation": "nation",
+    "name": "United States",
+    "isTropical": false,
+    "navColumn": 5,
+    "latitude": 38,
+    "longitude": -97,
+    "leftLongitude": "-171.797738",
+    "topLatitude": "71.358823",
+    "rightLongitude": "-67.118615",
+    "bottomLatitude": "18.957602",
+    "isInDatabase": false,
+    "jurisdictions": [
+      {
+        "id": "US-CA",
+        "a3": "USA-CA",
+        "code": "USA-CA",
+        "link": "united_states-california",
+        "designation": "state",
+        "name": "California",
+        "fullName": "United States - California",
+        "isInDatabase": false
+      },
+      {
+        "id": "US-IL",
+        "a3": "USA-IL",
+        "code": "USA-IL",
+        "link": "united_states-illinois",
+        "designation": "state",
+        "name": "Illinois",
+        "fullName": "United States - Illinois",
+        "isInDatabase": false
+      }
+    ]
+  }
+]
