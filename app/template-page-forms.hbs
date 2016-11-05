@@ -1,0 +1,43 @@
+{{#each forms}}
+  <div class="panel panel-primary">
+    <div class="panel-heading">{{title}}</div>
+    <div class="panel-body">
+      <form>
+        {{#each fields}}
+          <div class="form-group">
+            <label for="exampleInputEmail1">{{label}}</label>
+            {{#if isString}}
+              <input type="text" class="form-control" id="exampleInputPassword1" placeholder=""/>
+            {{/if}}
+            {{#if isDate}}
+              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="MM/DD/YYYY"/>
+            {{/if}}
+            {{#if isNumber}}
+              <input type="text" class="form-control" id="exampleInputPassword1" placeholder=""/>
+            {{/if}}
+            {{#if isName}}
+              <div class="row">
+                <div class="col-xs-6">
+                  <input type="text" class="form-control" placeholder="Full Name">
+                </div>
+                <div class="col-xs-6">
+                  <input type="text" class="form-control" placeholder="EMail">
+                </div>
+              </div>
+            {{/if}}
+            {{#if isChoice}}
+              {{#each items}}
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"/>
+                    {{this}}
+                  </label>
+                </div>
+              {{/each}}
+            {{/if}}
+          </div>
+        {{/each}}
+      </form>
+    </div>
+  </div>
+{{/each}}

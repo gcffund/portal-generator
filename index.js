@@ -6,10 +6,10 @@ const site = require('./app/view-site');
 
 const pages = [];
 pages.push(require('./app/view-page-home'));
-// pages.push(require('./app/view-page-indicators'));
-// pages.push(require('./app/view-page-forms'));
-// pages.push(require('./app/view-page-projects'));
-// pages.push(require('./app/view-page-submissions'));
+pages.push(require('./app/view-page-indicators'));
+pages.push(require('./app/view-page-forms'));
+pages.push(require('./app/view-page-projects'));
+pages.push(require('./app/view-page-submissions'));
 
 const navItems = pages.map(page => page.nav);
 
@@ -36,12 +36,13 @@ function processPage(page) {
 const p = [];
 pages.forEach((page) => {
   const navBaseName = page.nav.id || '';
-  fs.ensureDirSync(path.join('public', navBaseName));
+  const pageDirName = path.join(C.PUBLIC_DIR, navBaseName);
+  fs.ensureDirSync(pageDirName);
   p.push(
     processPage(page)
     .then((result) => {
       fs.writeFileSync(
-        path.join(C.PUBLIC_DIR, navBaseName, 'index.html'),
+        path.join(pageDirName, 'index.html'),
         site.render({ pageContext: page.context(result), navItems })
       );
       return result;

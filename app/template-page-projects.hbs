@@ -1,0 +1,66 @@
+{{#each projects}}
+  <table class="table gcffund-projects" id="{{_id}}"><tbody>
+    <tr class="bg-primary gcffund-project">
+      <td colspan="2">{{name}}</td>
+    </tr>
+    <tr>
+      <td class="project-key">Open Date:</td>
+      <td>{{startDate}}</td>
+    </tr>
+    <tr>
+      <td class="project-key">Close Dates:</td>
+      <td>{{endDate}}</td>
+    </tr>
+    <tr>
+      <td class="project-key">Jurisdictions:</td>
+      {{#if jurisdictions}}
+        {{#each jurisdictions}}
+          {{#if @first}}
+            <td>{{counter @index}}. {{{fullName}}}</td>
+          {{else}}
+            <tr>
+              <td>&nbsp;</td>
+              <td>{{counter @index}}. {{{fullName}}}</td>
+            </tr>
+          {{/if}}
+        {{/each}}
+      {{else}}
+        <td>&nbsp;</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td class="project-key">Subcontractors:</td>
+      {{#if subcontractors}}
+        {{#each subcontractors}}
+          {{#if @first}}
+            <td>{{counter @index}}. {{{this}}}</td>
+          {{else}}
+            <tr>
+              <td>&nbsp;</td>
+              <td>{{counter @index}}. {{{this}}}</td>
+            </tr>
+          {{/if}}
+        {{/each}}
+      {{else}}
+        <td>&nbsp;</td>
+      {{/if}}
+    </tr>
+    <tr>
+      <td class="project-key">Indicators:</td>
+      {{#if indicators}}
+        {{#each indicators}}
+          {{#if @first}}
+            <td>{{counter @index}}. {{{this}}}</td>
+          {{else}}
+            <tr>
+              <td>&nbsp;</td>
+              <td>{{counter @index}}. {{{this}}}</td>
+            </tr>
+          {{/if}}
+        {{/each}}
+      {{else}}
+        <td>&nbsp;</td>
+      {{/if}}
+    </tr>
+  </tbody></table>
+{{/each}}
