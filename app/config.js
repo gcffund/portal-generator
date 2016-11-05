@@ -6,6 +6,9 @@ const LOWER_CASE_WORDS = ['a', 'an', 'at', 'as', 'and', 'the', 'or', 'of', 'on',
 
 const DB_URI = 'mongodb://localhost:27017/gcffund-portal';
 
+const GRAPHQL_PORT = 9090;
+const GRAPHQL_BASE_URI = `http://127.0.0.1:${GRAPHQL_PORT}`;
+
 const IS_PRODUCTION = false;
 
 const NATIONS = fs.readJsonSync(path.join('app', 'data.nations.json'));
@@ -18,4 +21,13 @@ NATIONS.forEach((nation) => {
   });
 });
 
-module.exports = { UPPER_CASE_WORDS, LOWER_CASE_WORDS, DB_URI, IS_PRODUCTION, NATIONS, JURISDICTIONS };
+module.exports = {
+  UPPER_CASE_WORDS,
+  LOWER_CASE_WORDS,
+  DB_URI,
+  GRAPHQL_PORT,
+  GRAPHQL_BASE_URI,
+  IS_PRODUCTION,
+  NATIONS,
+  JURISDICTIONS,
+};
