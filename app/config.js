@@ -10,6 +10,7 @@ const GRAPHQL_PORT = 9090;
 const GRAPHQL_BASE_URI = `http://127.0.0.1:${GRAPHQL_PORT}`;
 
 const PUBLIC_DIR = '/var/www/gcffund-portal/public';
+const PUBLIC_ASSETS_DIR = path.join(PUBLIC_DIR, 'assets');
 
 const IS_PRODUCTION = false;
 
@@ -30,6 +31,7 @@ module.exports = {
   GRAPHQL_PORT,
   GRAPHQL_BASE_URI,
   PUBLIC_DIR,
+  PUBLIC_ASSETS_DIR,
   IS_PRODUCTION,
   NATIONS,
   JURISDICTIONS,
