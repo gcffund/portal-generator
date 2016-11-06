@@ -13,7 +13,7 @@ const PUBLIC_DIR = '/var/www/gcffund-portal/public';
 
 const IS_PRODUCTION = false;
 
-const NATIONS = fs.readJsonSync(path.join('app', 'data.nations.json'));
+const NATIONS = fs.readJsonSync(path.join('app', 'config-data-nations.json'));
 // build jurisdictions from nations
 const JURISDICTIONS = [];
 NATIONS.forEach((nation) => {

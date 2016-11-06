@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const graphql = require('graphql');
 const C = require('./config');
 
-const OutcomeSchema = require('./mongoose-schema_defs').OutcomeSchema;
-const FormSchema = require('./mongoose-schema_defs').FormSchema;
-const ProjectSchema = require('./mongoose-schema_defs').ProjectSchema;
+const OutcomeSchema = require('./schema-mongoose').OutcomeSchema;
+const FormSchema = require('./schema-mongoose').FormSchema;
+const ProjectSchema = require('./schema-mongoose').ProjectSchema;
 
 mongoose.Promise = global.Promise;
 mongoose.set('debug', false);

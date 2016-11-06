@@ -1,7 +1,7 @@
 const path = require('path');
 const uuid = require('uuid');
 const mongoose = require('mongoose');
-const ProjectSchema = require('./app/mongoose-schema_defs').ProjectSchema;
+const ProjectSchema = require('./app/schema-mongoose').ProjectSchema;
 const xlsxParser = require('./app/lib-xlsx_parser');
 const C = require('./app/config');
 
@@ -11,13 +11,9 @@ const table = xlsxParser.parse(path.join(__dirname, 'app', 'data-projects.xlsx')
 
 const projectDocs = [];
 
-// Project UUIDs
-// 'e1650ae0-a39c-11e6-a738-31c333ef0e28'
-// 'e75a9dc0-a39c-11e6-a738-31c333ef0e28'
-
 let project;
 let fieldName;
-table.data.forEach((rowObj, rowIndex) => {
+table.data.forEach((rowObj) => {
   rowObj.forEach((cellString, colIndex) => {
     if (colIndex === 0 && cellString) {
       project = {
@@ -47,14 +43,11 @@ table.data.forEach((rowObj, rowIndex) => {
   });
 });
 
-// console.log(util.inspect(projectDocs, { depth: null }));
-
 function insertProjectDocs() {
   return ProjectModel.insertMany(projectDocs).then((result) => {
     console.log(`INSERTED ${result.length} projects.`);
     return result;
   });
-  // return Promise.resolve();
 }
 
 function removeModels(arg) {
@@ -112,5 +105,3 @@ function start() {
 }
 
 start();
-
-// console.log(util.inspect(outcomeDocs, { depth: null }));
