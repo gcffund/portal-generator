@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const graphql = require('graphql');
 const C = require('./config');
 
+const IndicatorSchema = require('./schema-mongoose').IndicatorSchema;
 const OutcomeSchema = require('./schema-mongoose').OutcomeSchema;
 const FormSchema = require('./schema-mongoose').FormSchema;
 const ProjectSchema = require('./schema-mongoose').ProjectSchema;
@@ -10,6 +11,7 @@ mongoose.Promise = global.Promise;
 mongoose.set('debug', false);
 mongoose.connect(C.DB_URI);
 
+const IndicatorModel = mongoose.model('Indicator', IndicatorSchema);
 const OutcomeModel = mongoose.model('Outcome', OutcomeSchema);
 const FormModel = mongoose.model('Form', FormSchema);
 const ProjectModel = mongoose.model('Project', ProjectSchema);
@@ -28,8 +30,7 @@ const Indicator = new GraphQLObjectType({
   name: 'Indicator',
   description: 'Indicator',
   fields: () => ({
-    index: { type: GraphQLInt },
-    section: { type: GraphQLString },
+    sectionCode: { type: GraphQLString },
     title: { type: GraphQLString },
   }),
 });
@@ -38,8 +39,7 @@ const Output = new GraphQLObjectType({
   name: 'Output',
   description: 'Output',
   fields: () => ({
-    index: { type: GraphQLInt },
-    section: { type: GraphQLString },
+    sectionCode: { type: GraphQLString },
     title: { type: GraphQLString },
     indicators: { type: new GraphQLList(Indicator) },
   }),
@@ -49,8 +49,7 @@ const Outcome = new GraphQLObjectType({
   name: 'Outcome',
   description: 'Outcome',
   fields: () => ({
-    index: { type: GraphQLInt },
-    section: { type: GraphQLString },
+    sectionCode: { type: GraphQLString },
     title: { type: GraphQLString },
     outputs: { type: new GraphQLList(Output) },
     indicators: { type: new GraphQLList(Indicator) },
@@ -125,7 +124,9 @@ const Query = new GraphQLObjectType({
     outcomes: {
       type: new GraphQLList(Outcome),
       resolve() {
-        return OutcomeModel.find({});
+        const p1 = OutcomeModel.find({});
+        p1.populate({ path: 'indicators outputs.indicators' });
+        return p1;
       },
     },
     forms: {

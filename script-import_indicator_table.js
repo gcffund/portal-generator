@@ -1,7 +1,9 @@
 const path = require('path');
+const uuid = require('uuid');
 // const util = require('util');
 // const fs = require('fs-extra');
 const mongoose = require('mongoose');
+const IndicatorSchema = require('./app/schema-mongoose').IndicatorSchema;
 const OutcomeSchema = require('./app/schema-mongoose').OutcomeSchema;
 const xlsxParser = require('./app/lib-xlsx_parser');
 const stringFormatter = require('./app/lib-string_formatter');
@@ -12,16 +14,30 @@ const sectionNumberRegex = / .+$/;
 stringFormatter.setLowerCaseWords(C.LOWER_CASE_WORDS);
 stringFormatter.setUpperCaseWords(C.UPPER_CASE_WORDS);
 
-// const OutcomeSchema = schemaDefs.outcomeSchema;
+const IndicatorModel = mongoose.model('Indicator', IndicatorSchema);
 const OutcomeModel = mongoose.model('Outcome', OutcomeSchema);
 
 const table = xlsxParser.parse(path.join(__dirname, 'app', 'data-framework.xlsx'), { rowStartIndex: 2 });
 
+const indicatorDocs = [];
 const outcomeDocs = [];
+
+function getAlphabeticIndex(integerIndex) {
+  const base26 = integerIndex.toString(26);
+  let alphabeticIndex = '';
+  base26.split('').forEach((char, charIndex) => {
+    let charCode = char.charCodeAt();
+    if (charIndex === 0 && base26.length !== 1) charCode -= 1;
+    charCode = (char <= '9') ? charCode + 49 : charCode + 10;
+    alphabeticIndex += String.fromCharCode(charCode);
+  });
+  return alphabeticIndex;
+}
 
 let isOutcome = false;
 let activeOutcome;
 let activeOutput;
+let indicatorIndex;
 table.data.forEach((rowObj, rowIndex) => {
   rowObj.forEach((cellString, colIndex) => {
     if (colIndex === 0 && cellString) { // this is an outcome/output section ID
@@ -32,27 +48,32 @@ table.data.forEach((rowObj, rowIndex) => {
       }
       isOutcome = (cellString.substr(0, sectionNumberMatch.index).trim().toUpperCase() === 'OUTCOME');
       if (isOutcome) {
-        activeOutcome = { index: 0, title: '', indicators: [], outputs: [] };
+        activeOutcome = { sectionCode: '', title: '', indicators: [], outputs: [] };
         outcomeDocs.push(activeOutcome);
-        activeOutcome.index = outcomeDocs.length - 1;
+        activeOutcome.sectionCode = (outcomeDocs.length).toString(10);
       } else {
-        activeOutput = { index: 0, title: '', indicators: [] };
+        activeOutput = { sectionCode: '', title: '', indicators: [] };
         activeOutcome.outputs.push(activeOutput);
-        activeOutput.index = activeOutcome.outputs.length - 1;
+        activeOutput.sectionCode = `${activeOutcome.sectionCode}.${(activeOutcome.outputs.length).toString(10)}`;
       }
+      indicatorIndex = 0;
     } else if (colIndex === 1 && cellString) { // descriptive title for outcome/output
       if (isOutcome) {
         activeOutcome.title = stringFormatter.getStartCase(cellString);
       } else {
         activeOutput.title = stringFormatter.getStartCase(cellString);
       }
-      // console.log(stringFormatter.getStartCase(cellString));
-    } else if (colIndex === 2) { // this is an indicator of the outcome
+    } else if (colIndex === 2) { // this is an indicator of the outcome (or output)
+      const indicatorID = uuid.v1();
+      indicatorDocs.push({ _id: indicatorID, sectionCode: '', title: stringFormatter.getStartCase(cellString) });
       if (isOutcome) {
-        activeOutcome.indicators.push({ index: activeOutcome.indicators.length, title: stringFormatter.getStartCase(cellString) });
+        activeOutcome.indicators.push(indicatorID);
+        indicatorDocs[indicatorDocs.length - 1].sectionCode = `${activeOutcome.sectionCode} ${getAlphabeticIndex(indicatorIndex)}`;
       } else {
-        activeOutput.indicators.push({ index: activeOutput.indicators.length, title: stringFormatter.getStartCase(cellString) });
+        activeOutput.indicators.push(indicatorID);
+        indicatorDocs[indicatorDocs.length - 1].sectionCode = `${activeOutput.sectionCode} ${getAlphabeticIndex(indicatorIndex)}`;
       }
+      indicatorIndex += 1;
     } else if (colIndex === 3) { // this is list of form indexes for the indicator
     } else if (colIndex === 5) { // this is the means for verification for the indicator
     }
@@ -62,6 +83,13 @@ table.data.forEach((rowObj, rowIndex) => {
 function insertOutomeDocs() {
   return OutcomeModel.insertMany(outcomeDocs).then((result) => {
     console.log(`INSERTED ${result.length} outcomes.`);
+    return result;
+  });
+}
+
+function insertIndicatorDocs() {
+  return IndicatorModel.insertMany(indicatorDocs).then((result) => {
+    console.log(`INSERTED ${result.length} indicators.`);
     return result;
   });
 }
@@ -103,7 +131,8 @@ function start() {
 
   connection.on('open', () => {
     console.log('Opened Mongo Database');
-    removeModels([OutcomeModel])
+    removeModels([IndicatorModel, OutcomeModel])
+    .then(() => insertIndicatorDocs())
     .then(() => insertOutomeDocs())
     .then(() => connection.close())
     .catch((err) => {

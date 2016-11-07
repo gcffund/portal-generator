@@ -1,23 +1,23 @@
 <table class="table gcffund-indicators"><tbody>
   {{#each outcomes}}
     <tr class="bg-primary gcffund-outcome">
-      <td>{{section}}</td>
+      <td>{{sectionCode}}</td>
       <td>{{title}}</td>
     </tr>
     {{#each indicators}}
       <tr>
-        <td>{{../section}} {{section}}</td>
+        <td>{{sectionCode}}</td>
         <td>{{title}}</td>
       </tr>
     {{/each}}
     {{#each outputs}}
       <tr class="bg-primary gcffund-output">
-        <td>{{../section}}.{{section}}</td>
+        <td>{{sectionCode}}</td>
         <td>{{title}}</td>
       </tr>
       {{#each indicators}}
         <tr>
-          <td>{{../../section}}.{{../section}} {{section}}</td>
+          <td>{{sectionCode}}</td>
           <td>{{title}}</td>
         </tr>
       {{/each}}

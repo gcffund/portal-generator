@@ -1,6 +1,6 @@
 const pageTitle = 'Indicators';
 const nav = { id: 'indicators', name: 'Indicators' };
-const query = '{outcomes {index section title indicators {index section title} outputs {index section title indicators {index section title}}}}';
+const query = '{outcomes {sectionCode title indicators {sectionCode title} outputs {sectionCode title indicators {sectionCode title}}}}';
 
 const path = require('path');
 const fs = require('fs-extra');

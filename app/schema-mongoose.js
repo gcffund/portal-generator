@@ -10,47 +10,36 @@ function lookupJurisdiction(jurisdictionCode) {
   return C.JURISDICTIONS.find(jurisdiction => (jurisdiction.code === jurisdictionCode));
 }
 
-function getAlphabeticIndex(integerIndex) {
-  const base26 = integerIndex.toString(26);
-  let alphabeticIndex = '';
-  base26.split('').forEach((char, charIndex) => {
-    let charCode = char.charCodeAt();
-    if (charIndex === 0 && base26.length !== 1) charCode -= 1;
-    charCode = (char <= '9') ? charCode + 49 : charCode + 10;
-    alphabeticIndex += String.fromCharCode(charCode);
-  });
-  return alphabeticIndex;
-}
-
 const IndicatorSchema = new mongoose.Schema({
-  index: { type: Number },
+  _id: { type: String },
+  sectionCode: { type: String },
   title: { type: String, default: '' },
 });
 
-IndicatorSchema.virtual('section').get(function indicatorSchemaVirtual() {
-  return getAlphabeticIndex(this.index);
-});
+// IndicatorSchema.virtual('section').get(function indicatorSchemaVirtual() {
+//   return getAlphabeticIndex(this.index);
+// });
 
 const OutputSchema = new mongoose.Schema({
-  index: { type: Number },
+  sectionCode: { type: String },
   title: { type: String, default: '' },
-  indicators: { type: [IndicatorSchema] },
+  indicators: [{ type: String, ref: 'Indicator' }],
 });
 
-OutputSchema.virtual('section').get(function outputSchemaVirtual() {
-  return (this.index + 1).toString();
-});
+// OutputSchema.virtual('section').get(function outputSchemaVirtual() {
+//   return (this.index + 1).toString();
+// });
 
 const OutcomeSchema = new mongoose.Schema({
-  index: { type: Number },
+  sectionCode: { type: String },
   title: { type: String, default: '' },
   outputs: { type: [OutputSchema] },
-  indicators: { type: [IndicatorSchema] },
+  indicators: [{ type: String, ref: 'Indicator' }],
 });
 
-OutcomeSchema.virtual('section').get(function outcomeSchemaVirtual() {
-  return (this.index + 1).toString();
-});
+// OutcomeSchema.virtual('section').get(function outcomeSchemaVirtual() {
+//   return (this.index + 1).toString();
+// });
 
 const FormFieldSchema = new mongoose.Schema({
   label: { type: String, default: '' },
@@ -116,4 +105,4 @@ ProjectSchema.virtual('jurisdictions').get(function projectJurisdictions() {
   }));
 });
 
-module.exports = { OutcomeSchema, FormSchema, ProjectSchema };
+module.exports = { IndicatorSchema, OutcomeSchema, FormSchema, ProjectSchema };
