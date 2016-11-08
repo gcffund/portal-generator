@@ -12,55 +12,49 @@
       <td>{{endDate}}</td>
     </tr>
     <tr>
+      <td class="project-key">Submit Page:</td>
+      <td><a target="_blank" href="/submit/{{_id}}">/submit/{{_id}}</a></td>
+    </tr>
+    <tr>
       <td class="project-key">Jurisdictions:</td>
-      {{#if jurisdictions}}
+      <td>
+        <ol>
         {{#each jurisdictions}}
-          {{#if @first}}
-            <td>{{counter @index}}. {{{fullName}}}</td>
-          {{else}}
-            <tr>
-              <td>&nbsp;</td>
-              <td>{{counter @index}}. {{{fullName}}}</td>
-            </tr>
-          {{/if}}
+          <li>{{{fullName}}}</li>
         {{/each}}
-      {{else}}
-        <td>&nbsp;</td>
-      {{/if}}
+      </ol>
+      </td>
     </tr>
     <tr>
       <td class="project-key">Subcontractors:</td>
-      {{#if subcontractors}}
-        {{#each subcontractors}}
-          {{#if @first}}
-            <td>{{counter @index}}. {{{this}}}</td>
-          {{else}}
-            <tr>
-              <td>&nbsp;</td>
-              <td>{{counter @index}}. {{{this}}}</td>
-            </tr>
-          {{/if}}
-        {{/each}}
-      {{else}}
-        <td>&nbsp;</td>
-      {{/if}}
+      <td>
+        <ol>
+          {{#each subcontractors}}
+            <li>{{{this}}}</li>
+          {{/each}}
+        </ol>
+      </td>
     </tr>
-    <tr>
+    <tr class="fieldset fieldset-indicators">
       <td class="project-key">Indicators:</td>
-      {{#if indicators}}
+      <td>
         {{#each indicators}}
-          {{#if @first}}
-            <td>{{counter @index}}. {{{this}}}</td>
-          {{else}}
-            <tr>
-              <td>&nbsp;</td>
-              <td>{{counter @index}}. {{{this}}}</td>
-            </tr>
-          {{/if}}
+          <dl>
+            <dt>{{{this.sectionCode}}}</dt> <dd>{{{this.title}}}</dd>
+          </dl>
         {{/each}}
-      {{else}}
-        <td>&nbsp;</td>
-      {{/if}}
+      </td>
+    </tr>
+    <tr class="fieldset fieldset-forms">
+      <td class="project-key">Forms:</td>
+      <td>
+        {{#each forms}}
+          <dl>
+            <dt>{{{this.title}}}</dt>
+            <!-- <dd>&nbsp;</dd> -->
+          </dl>
+        {{/each}}
+      </td>
     </tr>
   </tbody></table>
 {{/each}}
