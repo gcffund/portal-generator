@@ -3,19 +3,15 @@
     <tr class="bg-primary gcffund-project">
       <td colspan="2">{{name}}</td>
     </tr>
-    <tr>
-      <td class="project-key">Open Date:</td>
-      <td>{{startDate}}</td>
+    <tr class="fieldset fieldset-dates">
+      <td class="project-key">Dates:</td>
+      <td>Start: {{startDate}} End: {{endDate}}</td>
     </tr>
-    <tr>
-      <td class="project-key">Close Dates:</td>
-      <td>{{endDate}}</td>
-    </tr>
-    <tr>
+    <tr class="fieldset fieldset-uri">
       <td class="project-key">Submit Page:</td>
       <td><a target="_blank" href="{{uri}}">{{uri}}</a></td>
     </tr>
-    <tr>
+    <tr class="fieldset fieldset-jurisdictions">
       <td class="project-key">Jurisdictions:</td>
       <td>
         <ol>
@@ -25,7 +21,7 @@
       </ol>
       </td>
     </tr>
-    <tr>
+    <tr class="fieldset fieldset-subcontractors">
       <td class="project-key">Subcontractors:</td>
       <td>
         <ol>
