@@ -1,8 +1,9 @@
 const path = require('path');
 const uuid = require('uuid');
+const _ = require('lodash');
 // const util = require('util');
-// const fs = require('fs-extra');
 const mongoose = require('mongoose');
+const FormSchema = require('./app/schema-mongoose').FormSchema;
 const IndicatorSchema = require('./app/schema-mongoose').IndicatorSchema;
 const OutcomeSchema = require('./app/schema-mongoose').OutcomeSchema;
 const xlsxParser = require('./app/lib-xlsx_parser');
@@ -14,11 +15,13 @@ const sectionNumberRegex = / .+$/;
 stringFormatter.setLowerCaseWords(C.LOWER_CASE_WORDS);
 stringFormatter.setUpperCaseWords(C.UPPER_CASE_WORDS);
 
+const FormModel = mongoose.model('Form', FormSchema);
 const IndicatorModel = mongoose.model('Indicator', IndicatorSchema);
 const OutcomeModel = mongoose.model('Outcome', OutcomeSchema);
 
 const table = xlsxParser.parse(path.join(__dirname, 'app', 'data-framework.xlsx'), { rowStartIndex: 2 });
 
+let formDocs;
 const indicatorDocs = [];
 const outcomeDocs = [];
 
@@ -32,6 +35,10 @@ function getAlphabeticIndex(integerIndex) {
     alphabeticIndex += String.fromCharCode(charCode);
   });
   return alphabeticIndex;
+}
+
+function readFormDocs() {
+  return FormModel.find({});
 }
 
 let isOutcome = false;
@@ -65,7 +72,12 @@ table.data.forEach((rowObj, rowIndex) => {
       }
     } else if (colIndex === 2) { // this is an indicator of the outcome (or output)
       const indicatorID = uuid.v1();
-      indicatorDocs.push({ _id: indicatorID, sectionCode: '', title: stringFormatter.getStartCase(cellString) });
+      indicatorDocs.push({ _id: indicatorID,
+        sectionCode: '',
+        title: stringFormatter.getStartCase(cellString),
+        formName: '',
+        forms: [],
+      });
       if (isOutcome) {
         activeOutcome.indicators.push(indicatorID);
         indicatorDocs[indicatorDocs.length - 1].sectionCode = `${activeOutcome.sectionCode} ${getAlphabeticIndex(indicatorIndex)}`;
@@ -76,6 +88,8 @@ table.data.forEach((rowObj, rowIndex) => {
       indicatorIndex += 1;
     } else if (colIndex === 3) { // this is list of form indexes for the indicator
     } else if (colIndex === 5) { // this is the means for verification for the indicator
+    } else if (colIndex === 6) { // this is the form name
+      indicatorDocs[indicatorDocs.length - 1].formName = cellString;
     }
   });
 });
@@ -88,6 +102,15 @@ function insertOutomeDocs() {
 }
 
 function insertIndicatorDocs() {
+  const formLookupID = {};
+  formDocs.forEach((doc) => { formLookupID[_.snakeCase(doc.title)] = doc._id; });
+  // populate indicator 'forms' with formIDs
+  indicatorDocs.forEach((indicatorDoc) => {
+    if (!indicatorDoc.formName) return;
+    const formID = formLookupID[_.snakeCase(indicatorDoc.formName)];
+    if (!formID) return;
+    indicatorDoc.forms.push(formID);
+  });
   return IndicatorModel.insertMany(indicatorDocs).then((result) => {
     console.log(`INSERTED ${result.length} indicators.`);
     return result;
@@ -132,6 +155,11 @@ function start() {
   connection.on('open', () => {
     console.log('Opened Mongo Database');
     removeModels([IndicatorModel, OutcomeModel])
+    .then(() => readFormDocs())
+    .then((result) => {
+      formDocs = result;
+      return Promise.resolve();
+    })
     .then(() => insertIndicatorDocs())
     .then(() => insertOutomeDocs())
     .then(() => connection.close())

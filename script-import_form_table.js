@@ -1,4 +1,5 @@
 const path = require('path');
+const uuid = require('uuid');
 // const util = require('util');
 // const fs = require('fs-extra');
 const mongoose = require('mongoose');
@@ -25,7 +26,7 @@ table.data.forEach((rowObj, rowIndex) => {
       groupName = cellString;
     }
     if (colIndex === 1 && cellString) {
-      form = { title: cellString, groupName, fields: [] };
+      form = { _id: uuid.v1(), title: cellString, groupName, fields: [] };
       formDocs.push(form);
     }
     if (colIndex === 2 && cellString) {

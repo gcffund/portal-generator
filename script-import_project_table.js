@@ -1,12 +1,15 @@
 const path = require('path');
 const uuid = require('uuid');
 const mongoose = require('mongoose');
+const IndicatorSchema = require('./app/schema-mongoose').IndicatorSchema;
 const ProjectSchema = require('./app/schema-mongoose').ProjectSchema;
 const xlsxParser = require('./app/lib-xlsx_parser');
 const C = require('./app/config');
 
+const IndicatorModel = mongoose.model('Indicator', IndicatorSchema);
 const ProjectModel = mongoose.model('Project', ProjectSchema);
 
+let indicatorDocs;
 const table = xlsxParser.parse(path.join(__dirname, 'app', 'data-projects.xlsx'), { rowStartIndex: 0 });
 
 const projectDocs = [];
@@ -24,6 +27,7 @@ table.data.forEach((rowObj) => {
         endDate: '',
         nationCode: '',
         jurisdictionCodes: [],
+        indicatorCodes: [],
         indicators: [],
       };
       projectDocs.push(project);
@@ -38,12 +42,24 @@ table.data.forEach((rowObj) => {
       else if (fieldName === 'enddate') project.endDate = cellString;
       else if (fieldName === 'nation') project.nationCode = cellString;
       else if (fieldName === 'jurisdictions') project.jurisdictionCodes.push(cellString);
-      else if (fieldName === 'indicators') project.indicators.push(cellString);
+      else if (fieldName === 'indicators') project.indicatorCodes.push(cellString);
     }
   });
 });
 
+function readIndicatorDocs() {
+  return IndicatorModel.find({});
+}
+
 function insertProjectDocs() {
+  projectDocs.forEach((projectDoc) => {
+    projectDoc.indicatorCodes.forEach((indicatorCode) => {
+      const indicator = indicatorDocs.find(testIndicator => (testIndicator.sectionCode === indicatorCode));
+      if (indicator) {
+        projectDoc.indicators.push(indicator._id);
+      }
+    });
+  });
   return ProjectModel.insertMany(projectDocs).then((result) => {
     console.log(`INSERTED ${result.length} projects.`);
     return result;
@@ -88,6 +104,11 @@ function start() {
   connection.on('open', () => {
     console.log('Opened Mongo Database');
     removeModels([ProjectModel])
+    .then(() => readIndicatorDocs())
+    .then((result) => {
+      indicatorDocs = result;
+      return Promise.resolve();
+    })
     .then(() => insertProjectDocs())
     .then(() => connection.close())
     .catch((err) => {
