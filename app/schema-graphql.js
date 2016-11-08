@@ -19,12 +19,39 @@ const ProjectModel = mongoose.model('Project', ProjectSchema);
 // GraphQL Field Types
 const GraphQLObjectType = graphql.GraphQLObjectType;
 const GraphQLString = graphql.GraphQLString;
-const GraphQLInt = graphql.GraphQLInt;
+// const GraphQLInt = graphql.GraphQLInt;
 // const GraphQLFloat = graphql.GraphQLFloat;
 const GraphQLBoolean = graphql.GraphQLBoolean;
 const GraphQLSchema = graphql.GraphQLSchema;
 const GraphQLList = graphql.GraphQLList;
 // const GraphQLNonNull = graphql.GraphQLNonNull;
+
+const FormField = new GraphQLObjectType({
+  name: 'FormField',
+  description: 'Form Field',
+  fields: () => ({
+    label: { type: GraphQLString },
+    type: { type: GraphQLString },
+    isMulti: { type: GraphQLBoolean },
+    items: { type: new GraphQLList(GraphQLString) },
+    isString: { type: GraphQLBoolean },
+    isDate: { type: GraphQLBoolean },
+    isNumber: { type: GraphQLBoolean },
+    isName: { type: GraphQLBoolean },
+    isChoice: { type: GraphQLBoolean },
+  }),
+});
+
+const Form = new GraphQLObjectType({
+  name: 'Form',
+  description: 'Form',
+  fields: () => ({
+    _id: { type: GraphQLString },
+    title: { type: GraphQLString },
+    groupName: { type: GraphQLString },
+    fields: { type: new GraphQLList(FormField) },
+  }),
+});
 
 const Indicator = new GraphQLObjectType({
   name: 'Indicator',
@@ -32,6 +59,7 @@ const Indicator = new GraphQLObjectType({
   fields: () => ({
     sectionCode: { type: GraphQLString },
     title: { type: GraphQLString },
+    forms: { type: new GraphQLList(Form) },
   }),
 });
 
@@ -56,32 +84,6 @@ const Outcome = new GraphQLObjectType({
   }),
 });
 
-const FormField = new GraphQLObjectType({
-  name: 'FormField',
-  description: 'Form Field',
-  fields: () => ({
-    label: { type: GraphQLString },
-    type: { type: GraphQLString },
-    isMulti: { type: GraphQLBoolean },
-    items: { type: new GraphQLList(GraphQLString) },
-    isString: { type: GraphQLBoolean },
-    isDate: { type: GraphQLBoolean },
-    isNumber: { type: GraphQLBoolean },
-    isName: { type: GraphQLBoolean },
-    isChoice: { type: GraphQLBoolean },
-  }),
-});
-
-const Form = new GraphQLObjectType({
-  name: 'Form',
-  description: 'Form',
-  fields: () => ({
-    title: { type: GraphQLString },
-    groupName: { type: GraphQLString },
-    fields: { type: new GraphQLList(FormField) },
-  }),
-});
-
 const Nation = new GraphQLObjectType({
   name: 'Nation',
   description: 'Nation',
@@ -101,7 +103,6 @@ const Jurisdiction = new GraphQLObjectType({
   }),
 });
 
-
 const Project = new GraphQLObjectType({
   name: 'Project',
   description: 'Project',
@@ -113,7 +114,8 @@ const Project = new GraphQLObjectType({
     endDate: { type: GraphQLString },
     nation: { type: Nation },
     jurisdictions: { type: new GraphQLList(Jurisdiction) },
-    indicators: { type: new GraphQLList(GraphQLString) },
+    indicators: { type: new GraphQLList(Indicator) },
+    forms: { type: new GraphQLList(Form) },
   }),
 });
 
@@ -125,7 +127,9 @@ const Query = new GraphQLObjectType({
       type: new GraphQLList(Outcome),
       resolve() {
         const p1 = OutcomeModel.find({});
-        p1.populate({ path: 'indicators outputs.indicators' });
+        // p1.populate({ path: 'jurisdictions', populate: { path: 'governor delegates' } });
+        p1.populate({ path: 'indicators', populate: { path: 'forms' } });
+        p1.populate({ path: 'outputs.indicators', populate: { path: 'forms' } });
         return p1;
       },
     },
@@ -138,7 +142,9 @@ const Query = new GraphQLObjectType({
     projects: {
       type: new GraphQLList(Project),
       resolve() {
-        return ProjectModel.find({});
+        const p1 = ProjectModel.find({});
+        p1.populate({ path: 'indicators', populate: { path: 'forms' } });
+        return p1;
       },
     },
   }),

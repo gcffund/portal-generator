@@ -14,6 +14,7 @@ const IndicatorSchema = new mongoose.Schema({
   _id: { type: String },
   sectionCode: { type: String },
   title: { type: String, default: '' },
+  forms: [{ type: String, ref: 'Form' }],
 });
 
 // IndicatorSchema.virtual('section').get(function indicatorSchemaVirtual() {
@@ -69,6 +70,7 @@ FormFieldSchema.virtual('isChoice').get(function formFieldsIsChoice() {
 });
 
 const FormSchema = new mongoose.Schema({
+  _id: { type: String },
   title: { type: String, default: '' },
   groupName: { type: String, default: '' },
   fields: { type: [FormFieldSchema] },
@@ -82,7 +84,24 @@ const ProjectSchema = new mongoose.Schema({
   endDate: { type: String, default: '' },
   nationCode: { type: String, default: '' },
   jurisdictionCodes: { type: [String], default: [] },
-  indicators: { type: [String], default: [] },
+  indicators: [{ type: String, ref: 'Indicator' }],
+});
+
+ProjectSchema.virtual('forms').get(function projectForms() {
+  const forms = [];
+  const formIDs = [];
+  if (!this.indicators) return forms;
+  if (!Array.isArray(this.indicators)) return forms;
+  this.indicators.forEach((indicator) => {
+    if (!Array.isArray(indicator.forms)) return;
+    indicator.forms.forEach((form) => {
+      if (formIDs.includes(form._id)) return;
+      formIDs.push(form._id);
+      forms.push(form);
+    });
+  });
+  // console.log(this.indicators);
+  return forms;
 });
 
 ProjectSchema.virtual('nation').get(function projectNation() {
