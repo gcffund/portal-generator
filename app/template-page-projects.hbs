@@ -1,7 +1,11 @@
 {{#each projects}}
-  <table class="table gcffund-projects" id="{{_id}}"><tbody>
+  <table class="table gcffund-projects filtered" data-status="pending" id="{{_id}}"><tbody>
     <tr class="bg-primary gcffund-project">
       <td colspan="2">{{name}}</td>
+    </tr>
+    <tr class="fieldset fieldset-status">
+      <td class="project-key">Status:</td>
+      <td>Pending</td>
     </tr>
     <tr class="fieldset fieldset-dates">
       <td class="project-key">Dates:</td>
