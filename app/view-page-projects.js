@@ -1,6 +1,6 @@
 const pageTitle = 'Projects';
 const nav = { id: 'projects', name: 'Projects' };
-const query = '{ projects { _id name subcontractors startDate endDate nation { code name } jurisdictions {code name fullName } indicators { sectionCode title } forms { _id title } } }';
+const query = '{ projects { _id uri name subcontractors startDate endDate nation { code name } jurisdictions {code name fullName } indicators { sectionCode title } forms { _id title } } }';
 
 const path = require('path');
 const fs = require('fs-extra');

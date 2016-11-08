@@ -1,3 +1,5 @@
+const path = require('path');
+const url = require('url');
 const mongoose = require('mongoose');
 
 const C = require('./config');
@@ -85,6 +87,10 @@ const ProjectSchema = new mongoose.Schema({
   nationCode: { type: String, default: '' },
   jurisdictionCodes: { type: [String], default: [] },
   indicators: [{ type: String, ref: 'Indicator' }],
+});
+
+ProjectSchema.virtual('uri').get(function projectURI() {
+  return url.resolve(C.SITE_BASE_URI, path.join('submit', this._id));
 });
 
 ProjectSchema.virtual('forms').get(function projectForms() {
