@@ -37,7 +37,7 @@ const FormField = new GraphQLObjectType({
     isString: { type: GraphQLBoolean },
     isDate: { type: GraphQLBoolean },
     isNumber: { type: GraphQLBoolean },
-    isName: { type: GraphQLBoolean },
+    isPerson: { type: GraphQLBoolean },
     isChoice: { type: GraphQLBoolean },
   }),
 });

@@ -63,8 +63,8 @@ FormFieldSchema.virtual('isNumber').get(function formFieldsIsNumber() {
   return (this.type === 'NUMBER');
 });
 
-FormFieldSchema.virtual('isName').get(function formFieldsIsName() {
-  return (this.type === 'NAME');
+FormFieldSchema.virtual('isPerson').get(function formFieldsIsPerson() {
+  return (this.type === 'PERSON');
 });
 
 FormFieldSchema.virtual('isChoice').get(function formFieldsIsChoice() {

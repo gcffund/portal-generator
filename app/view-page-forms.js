@@ -1,6 +1,6 @@
 const pageTitle = 'Forms';
 const nav = { id: 'forms', name: 'Forms' };
-const query = '{ forms { title groupName fields { label type isMulti items isString isDate isNumber isName isChoice } } }';
+const query = '{ forms { title groupName fields { label type isMulti items isString isDate isNumber isPerson isChoice } } }';
 
 const path = require('path');
 const fs = require('fs-extra');

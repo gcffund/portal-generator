@@ -7,15 +7,15 @@
           <div class="form-group">
             <label for="exampleInputEmail1">{{label}}</label>
             {{#if isString}}
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder=""/>
+              <input type="text" class="form-control" placeholder=""/>
             {{/if}}
             {{#if isDate}}
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder="MM/DD/YYYY"/>
+              <input type="text" class="form-control" placeholder="MM/DD/YYYY"/>
             {{/if}}
             {{#if isNumber}}
-              <input type="text" class="form-control" id="exampleInputPassword1" placeholder=""/>
+              <input type="text" class="form-control" placeholder=""/>
             {{/if}}
-            {{#if isName}}
+            {{#if isPerson}}
               <div class="row">
                 <div class="col-xs-6">
                   <input type="text" class="form-control" placeholder="Full Name">
@@ -29,7 +29,7 @@
               {{#each items}}
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"/>
+                    <input type="radio" name="optionsRadios" value="option1"/>
                     {{this}}
                   </label>
                 </div>
