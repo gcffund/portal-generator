@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const handlebars = require('handlebars');
 
-const pageTemplate = handlebars.compile(fs.readFileSync(path.join('app', 'template-page-forms.hbs'), { encoding: 'utf8' }));
+const pageTemplate = handlebars.compile(fs.readFileSync(path.join('app', 'view-page-forms.hbs'), { encoding: 'utf8' }));
 
 function context(queryResults) {
   const main = pageTemplate(queryResults.data || {});

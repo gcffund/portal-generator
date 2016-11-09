@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs-extra');
 const handlebars = require('handlebars');
 
-const pageTemplate = handlebars.compile(fs.readFileSync(path.join('app', 'template-page-indicators.hbs'), { encoding: 'utf8' }));
+const pageTemplate = handlebars.compile(fs.readFileSync(path.join('app', 'view-page-indicators.hbs'), { encoding: 'utf8' }));
 
 function context(queryResults) {
   const full = pageTemplate(queryResults.data || {});

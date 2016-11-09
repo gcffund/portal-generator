@@ -8,8 +8,8 @@ const handlebars = require('handlebars');
 
 handlebars.registerHelper('counter', index => (index + 1));
 
-const mainTemplate = handlebars.compile(fs.readFileSync(path.join('app', 'template-page-projects.hbs'), { encoding: 'utf8' }));
-const sideTemplate = handlebars.compile(fs.readFileSync(path.join('app', 'template-page-projects-side.hbs'), { encoding: 'utf8' }));
+const mainTemplate = handlebars.compile(fs.readFileSync(path.join('app', 'view-page-projects.hbs'), { encoding: 'utf8' }));
+const sideTemplate = handlebars.compile(fs.readFileSync(path.join('app', 'view-page-projects-side.hbs'), { encoding: 'utf8' }));
 
 function context(queryResults) {
   const main = mainTemplate(queryResults.data || {});
