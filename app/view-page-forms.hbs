@@ -2,7 +2,7 @@
   <div class="panel panel-primary">
     <div class="panel-heading">{{title}}</div>
     <div class="panel-body">
-      <form>
+      <form data-id="{{_id}}" data-title="{{title}}">
         {{#each fields}}
           <div class="form-group">
             <label for="exampleInputEmail1">{{label}}</label>

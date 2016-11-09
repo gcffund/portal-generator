@@ -42,9 +42,12 @@ table.data.forEach((rowObj, rowIndex) => {
         field.type = cellString;
       }
     }
-    if (colIndex === 4 && cellString) {
+    if (colIndex === 4 && cellString) { // options column
       field.isMulti = true;
       field.items = cellString.split('|');
+    }
+    if (colIndex === 5 && cellString) { // id column (overrides generated one)
+      form._id = cellString;
     }
   });
 });
