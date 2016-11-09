@@ -25,6 +25,18 @@
                 </div>
               </div>
             {{/if}}
+            {{#if isJurisdiction}}
+              <select class="form-control">
+                <option value="" disabled="disabled" selected="selected">
+                  -- Choose a GCF Fund Jurisdiction --
+                </option>
+                {{#each @root.jurisdictions}}
+                  <option value="{{code}}">
+                    {{fullName}}
+                  </option>
+                {{/each}}
+              </select>
+            {{/if}}
             {{#if isChoice}}
               {{#each items}}
                 <div class="radio">

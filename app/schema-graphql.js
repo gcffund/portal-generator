@@ -38,6 +38,7 @@ const FormField = new GraphQLObjectType({
     isDate: { type: GraphQLBoolean },
     isNumber: { type: GraphQLBoolean },
     isPerson: { type: GraphQLBoolean },
+    isJurisdiction: { type: GraphQLBoolean },
     isChoice: { type: GraphQLBoolean },
   }),
 });
@@ -124,6 +125,12 @@ const Query = new GraphQLObjectType({
   name: 'Query',
   description: 'root query',
   fields: () => ({
+    jurisdictions: {
+      type: new GraphQLList(Jurisdiction),
+      resolve() {
+        return C.JURISDICTIONS;
+      },
+    },
     outcomes: {
       type: new GraphQLList(Outcome),
       resolve() {

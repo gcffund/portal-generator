@@ -67,6 +67,10 @@ FormFieldSchema.virtual('isPerson').get(function formFieldsIsPerson() {
   return (this.type === 'PERSON');
 });
 
+FormFieldSchema.virtual('isJurisdiction').get(function formFieldsIsPerson() {
+  return (this.type === 'JURISDICTION');
+});
+
 FormFieldSchema.virtual('isChoice').get(function formFieldsIsChoice() {
   return (this.type === 'CHOICE');
 });
