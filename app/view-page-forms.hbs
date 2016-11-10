@@ -4,18 +4,27 @@
     <div class="panel-body">
       <form data-id="{{_id}}" data-title="{{title}}">
         {{#each fields}}
-          <div class="form-group">
-            <label for="exampleInputEmail1">{{label}}</label>
-            {{#if isString}}
+          {{#if isString}}
+            <div class="form-group">
+              <label for="exampleInputEmail1">{{label}}</label>
               <input type="text" class="form-control" placeholder=""/>
-            {{/if}}
-            {{#if isDate}}
+            </div>
+          {{/if}}
+          {{#if isDate}}
+            <div class="form-group">
+              <label for="exampleInputEmail1">{{label}}</label>
               <input type="text" class="form-control" placeholder="MM/DD/YYYY"/>
-            {{/if}}
-            {{#if isNumber}}
+            </div>
+          {{/if}}
+          {{#if isNumber}}
+          <div class="form-group">
+              <label for="exampleInputEmail1">{{label}}</label>
               <input type="text" class="form-control" placeholder=""/>
-            {{/if}}
-            {{#if isPerson}}
+            </div>
+          {{/if}}
+          {{#if isPerson}}
+          <div class="form-group">
+              <label for="exampleInputEmail1">{{label}}</label>
               <div class="row">
                 <div class="col-xs-6">
                   <input type="text" class="form-control" placeholder="Full Name">
@@ -24,8 +33,11 @@
                   <input type="text" class="form-control" placeholder="EMail">
                 </div>
               </div>
-            {{/if}}
-            {{#if isJurisdiction}}
+            </div>
+          {{/if}}
+          {{#if isJurisdiction}}
+            <div class="form-group">
+              <label for="exampleInputEmail1">{{label}}</label>
               <select class="form-control">
                 <option value="" disabled="disabled" selected="selected">
                   -- Choose a GCF Fund Jurisdiction --
@@ -36,8 +48,11 @@
                   </option>
                 {{/each}}
               </select>
-            {{/if}}
-            {{#if isChoice}}
+            </div>
+          {{/if}}
+          {{#if isChoice}}
+            <div class="form-group">
+              <label for="exampleInputEmail1">{{label}}</label>
               {{#each items}}
                 <div class="radio">
                   <label>
@@ -46,8 +61,8 @@
                   </label>
                 </div>
               {{/each}}
-            {{/if}}
-          </div>
+            </div>
+          {{/if}}
         {{/each}}
       </form>
     </div>
