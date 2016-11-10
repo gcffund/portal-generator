@@ -6,34 +6,34 @@
         {{#each fields}}
           {{#if isString}}
             <div class="form-group">
-              <label for="exampleInputEmail1">{{label}}</label>
-              <input type="text" class="form-control" placeholder=""/>
+              <label for="input-{{labelID}}">{{label}}</label>
+              <input id="input-{{labelID}}" type="text" class="form-control" placeholder=""/>
             </div>
           {{/if}}
           {{#if isDate}}
             <div class="form-group">
-              <label for="exampleInputEmail1">{{label}}</label>
-              <input type="text" class="form-control" placeholder="MM/DD/YYYY"/>
+              <label for="{{labelID}}">{{label}}</label>
+              <input id="input-{{labelID}}" type="text" class="form-control" placeholder="MM/DD/YYYY"/>
             </div>
           {{/if}}
           {{#if isNumber}}
             <div class="form-group">
-              <label for="exampleInputEmail1">{{label}}</label>
-              <input type="text" class="form-control" placeholder="Number"/>
+              <label for="{{labelID}}">{{label}}</label>
+              <input id="input-{{labelID}}" type="text" class="form-control" placeholder="Number"/>
             </div>
           {{/if}}
           {{#if isInteger}}
             <div class="form-group">
-              <label for="exampleInputEmail1">{{label}}</label>
-              <input type="text" class="form-control" placeholder="Whole Number"/>
+              <label for="{{labelID}}">{{label}}</label>
+              <input id="input-{{labelID}}" type="text" class="form-control" placeholder="Whole Number"/>
             </div>
           {{/if}}
           {{#if isPerson}}
             <div class="form-group">
-              <label for="exampleInputEmail1">{{label}}</label>
+              <label for="{{labelID}}">{{label}}</label>
               <div class="row">
                 <div class="col-xs-6">
-                  <input type="text" class="form-control" placeholder="Full Name">
+                  <input id="input-{{labelID}}" type="text" class="form-control" placeholder="Full Name">
                 </div>
                 <div class="col-xs-6">
                   <input type="text" class="form-control" placeholder="EMail">
@@ -43,8 +43,8 @@
           {{/if}}
           {{#if isJurisdiction}}
             <div class="form-group">
-              <label for="exampleInputEmail1">{{label}}</label>
-              <select class="form-control">
+              <label for="{{labelID}}">{{label}}</label>
+              <select id="input-{{labelID}}" class="form-control">
                 <option value="" disabled="disabled" selected="selected">
                   -- Choose a GCF Fund Jurisdiction --
                 </option>
@@ -58,11 +58,11 @@
           {{/if}}
           {{#if isChoice}}
             <div class="form-group">
-              <label for="exampleInputEmail1">{{label}}</label>
+              <label for="{{labelID}}">{{label}}</label>
               {{#each items}}
                 <div class="radio">
                   <label>
-                    <input type="radio" name="optionsRadios" value="option1"/>
+                    <input id="input-{{labelID}}" type="radio" name="optionsRadios" value="option1"/>
                     {{this}}
                   </label>
                 </div>

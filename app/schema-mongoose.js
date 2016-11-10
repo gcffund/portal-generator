@@ -46,6 +46,7 @@ const OutcomeSchema = new mongoose.Schema({
 
 const FormFieldSchema = new mongoose.Schema({
   label: { type: String, default: '' },
+  labelID: { type: String, default: '' },
   type: { type: String, default: '' },
   isMulti: { type: Boolean, default: false },
   items: { type: [String], default: [] },

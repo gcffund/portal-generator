@@ -31,6 +31,7 @@ const FormField = new GraphQLObjectType({
   description: 'Form Field',
   fields: () => ({
     label: { type: GraphQLString },
+    labelID: { type: GraphQLString },
     type: { type: GraphQLString },
     isMulti: { type: GraphQLBoolean },
     items: { type: new GraphQLList(GraphQLString) },

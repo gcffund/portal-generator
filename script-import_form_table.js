@@ -1,4 +1,5 @@
 const path = require('path');
+const _ = require('lodash');
 const uuid = require('uuid');
 // const util = require('util');
 // const fs = require('fs-extra');
@@ -26,11 +27,21 @@ table.data.forEach((rowObj, rowIndex) => {
       groupName = cellString;
     }
     if (colIndex === 1 && cellString) {
-      form = { _id: uuid.v1(), title: cellString, groupName, fields: [] };
+      form = {
+        _id: uuid.v1(),
+        title: cellString,
+        groupName,
+        fields: [],
+      };
       formDocs.push(form);
     }
     if (colIndex === 2 && cellString) {
-      field = { label: cellString, isMulti: false, items: [] };
+      field = {
+        label: cellString,
+        labelID: (_.snakeCase(cellString)),
+        isMulti: false,
+        items: [],
+      };
       form.fields.push(field);
     }
     if (colIndex === 3 && cellString) {
