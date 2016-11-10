@@ -10,7 +10,6 @@ adminSitePages.push(require('./app/view-page-home'));
 adminSitePages.push(require('./app/view-page-indicators'));
 adminSitePages.push(require('./app/view-page-forms'));
 adminSitePages.push(require('./app/view-page-projects'));
-adminSitePages.push(require('./app/view-page-submissions'));
 
 function processQuery(query) {
   if (!query) {
