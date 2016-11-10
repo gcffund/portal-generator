@@ -63,6 +63,10 @@ FormFieldSchema.virtual('isNumber').get(function formFieldsIsNumber() {
   return (this.type === 'NUMBER');
 });
 
+FormFieldSchema.virtual('isInteger').get(function formFieldsIsInteger() {
+  return (this.type === 'INTEGER');
+});
+
 FormFieldSchema.virtual('isPerson').get(function formFieldsIsPerson() {
   return (this.type === 'PERSON');
 });
